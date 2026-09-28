@@ -33,6 +33,7 @@ target_link_libraries(cpp_legacy_code PRIVATE
         Threads::Threads
 )
 
+enable_testing()
 add_executable(cpp_legacy_code_tests
         tests/ShippingCalculatorTest.cpp
         src/OrderFetcher.cpp
@@ -60,3 +61,6 @@ if (WIN32)
             $<TARGET_FILE_DIR:cpp_legacy_code>
     )
 endif ()
+
+include(GoogleTest)
+gtest_discover_tests(cpp_legacy_code_tests)
