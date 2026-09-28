@@ -1,4 +1,5 @@
 #include "src/ShippingCalculator.hpp"
+#include "src/OrderFetcher.hpp"
 
 #include <iostream>
 #include <stdexcept>
@@ -18,7 +19,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    ShippingCalculator calculator;
+    ShippingCalculator calculator = ShippingCalculator(OrderFetcher());
     const double cost = calculator.calculateShipping(orderId);
     std::cout << "Order " << orderId << " shipping cost: " << cost << std::endl;
 
