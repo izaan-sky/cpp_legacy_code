@@ -33,9 +33,7 @@ namespace asio = boost::asio;
 
 using tcp = asio::ip::tcp;
 
-ShippingCalculator::ShippingCalculator(OrderFetcher fetcher) {
-    this->fetcher = fetcher;
-}
+ShippingCalculator::ShippingCalculator(OrderFetcher& fetcher) : fetcher(fetcher) {}
 
 double ShippingCalculator::calculateShipping(int orderId) {
     try {

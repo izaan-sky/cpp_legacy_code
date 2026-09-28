@@ -19,7 +19,8 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    ShippingCalculator calculator = ShippingCalculator(OrderFetcher());
+    OrderFetcher fetcher;
+    ShippingCalculator calculator = ShippingCalculator(fetcher);
     const double cost = calculator.calculateShipping(orderId);
     std::cout << "Order " << orderId << " shipping cost: " << cost << std::endl;
 
