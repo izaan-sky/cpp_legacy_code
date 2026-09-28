@@ -33,9 +33,12 @@ namespace asio = boost::asio;
 
 using tcp = asio::ip::tcp;
 
+ShippingCalculator::ShippingCalculator() {
+    fetcher = OrderFetcher();
+}
+
 double ShippingCalculator::calculateShipping(int orderId) {
     try {
-        fetcher = OrderFetcher();
         const Order order = fetcher.fetchOrder(orderId);
 
         if (order.shippingType == "STANDARD") {

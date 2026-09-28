@@ -5,7 +5,7 @@
 
 class ShippingCalculator {
 public:
-    Order fetchOrder(const int orderId);
+    ShippingCalculator();
     double calculateShipping(int orderId);
 
 private:
