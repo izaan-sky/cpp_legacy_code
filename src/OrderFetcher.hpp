@@ -2,8 +2,14 @@
 
 #include "Order.hpp"
 
-class OrderFetcher
+class IOrderFetcher
 {
 public:
-    Order fetchOrder(const int orderId);
+    virtual Order fetchOrder(const int orderId) = 0;
+};
+
+class OrderFetcher : public IOrderFetcher
+{
+public:
+    Order fetchOrder(const int orderId) override;
 };
