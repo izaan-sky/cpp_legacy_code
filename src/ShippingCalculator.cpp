@@ -35,7 +35,7 @@ using tcp = asio::ip::tcp;
 
 double ShippingCalculator::calculateShipping(int orderId) {
     try {
-        OrderFetcher fetcher;
+        fetcher = OrderFetcher();
         const Order order = fetcher.fetchOrder(orderId);
 
         if (order.shippingType == "STANDARD") {
