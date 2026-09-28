@@ -3,35 +3,10 @@
 #include "OrderFetcher.hpp"
 #include "Order.hpp"
 
-#include <boost/asio/connect.hpp>
-#include <boost/asio/io_context.hpp>
-#include <boost/asio/ip/tcp.hpp>
-#include <boost/asio/ssl/context.hpp>
-#include <boost/asio/ssl/stream_base.hpp>
-
-#include <boost/beast/core/flat_buffer.hpp>
-#include <boost/beast/core/tcp_stream.hpp>
-#include <boost/beast/http/empty_body.hpp>
-#include <boost/beast/http/field.hpp>
-#include <boost/beast/http/read.hpp>
-#include <boost/beast/http/string_body.hpp>
-#include <boost/beast/http/verb.hpp>
-#include <boost/beast/http/write.hpp>
-#include <boost/beast/ssl/ssl_stream.hpp>
-
-#include <boost/json/parse.hpp>
-#include <boost/json/value.hpp>
-
-#include <openssl/ssl.h>
-
 #include <exception>
 #include <iostream>
 #include <stdexcept>
 #include <string>
-
-namespace asio = boost::asio;
-
-using tcp = asio::ip::tcp;
 
 ShippingCalculator::ShippingCalculator(IOrderFetcher& fetcher) : fetcher(fetcher) {}
 

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Order.hpp"
 #include "OrderFetcher.hpp"
 
 class ShippingCalculator {
