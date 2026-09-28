@@ -8,6 +8,16 @@ find_package(Boost REQUIRED COMPONENTS json)
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
 
+include(FetchContent)
+
+FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG v1.17.0
+)
+
+FetchContent_MakeAvailable(googletest)
+
 add_executable(cpp_legacy_code
         main.cpp
         src/OrderFetcher.cpp
@@ -21,6 +31,20 @@ target_link_libraries(cpp_legacy_code PRIVATE
         OpenSSL::SSL
         OpenSSL::Crypto
         Threads::Threads
+)
+
+add_executable(cpp_legacy_code_tests
+        tests/ShippingCalculatorTest.cpp
+        src/OrderFetcher.cpp
+        src/ShippingCalculator.cpp)
+target_link_libraries(cpp_legacy_code_tests PRIVATE
+        Boost::json
+        OpenSSL::SSL
+        OpenSSL::Crypto
+        Threads::Threads
+        GTest::gtest_main)
+target_include_directories(
+        cpp_legacy_code_tests PRIVATE src
 )
 
 if (WIN32)
