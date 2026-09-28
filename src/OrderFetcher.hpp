@@ -2,8 +2,8 @@
 
 #include "Order.hpp"
 
-class ShippingCalculator {
+class OrderFetcher
+{
 public:
     Order fetchOrder(const int orderId);
-    double calculateShipping(int orderId);
 };

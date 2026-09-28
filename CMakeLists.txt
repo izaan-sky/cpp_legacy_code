@@ -10,6 +10,7 @@ find_package(Threads REQUIRED)
 
 add_executable(cpp_legacy_code
         main.cpp
+        src/OrderFetcher.cpp
         src/ShippingCalculator.cpp
 )
 
