@@ -21,8 +21,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "EXPRESS") {
-            return order.weightKg * 0.8
-                 + order.distanceKm * 0.1;
+            return calculate(order);
         }
 
         if (order.shippingType == "OVERNIGHT") {
@@ -41,4 +40,9 @@ double ShippingCalculator::calculateShipping(int orderId) {
         std::cout << e.what() << '\n';
         return -1;
     }
+}
+
+double ShippingCalculator::calculate(const Order &order)
+{
+    return order.weightKg * 0.8 + order.distanceKm * 0.1;
 }
