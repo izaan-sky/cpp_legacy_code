@@ -4,10 +4,10 @@
 #include "OrderFetcher.hpp"
 #include "ShippingCalculator.hpp"
 
-class OrderFetcherStandardStub : public IOrderFetcher
+class OrderFetcherStub : public IOrderFetcher
 {
     public:
-    OrderFetcherStandardStub(Order order) {
+    OrderFetcherStub(Order order) {
         m_order = std::move(order);
     }
 
@@ -58,7 +58,7 @@ TEST(ShippingCalculatorTest, StandardShippingFor5kgOver120kmIs2Point5)
     order.shippingType = "STANDARD";
     order.weightKg = 5;
 
-    OrderFetcherStandardStub orderFetcherStub(std::move(order));
+    OrderFetcherStub orderFetcherStub(std::move(order));
 
     ShippingCalculator shippingCalculator(orderFetcherStub);
     const double calculatedCost = shippingCalculator.calculateShipping(1001);
