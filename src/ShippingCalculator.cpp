@@ -13,6 +13,10 @@
 
 ShippingCalculator::ShippingCalculator(IOrderFetcher& fetcher) : fetcher(fetcher) {}
 
+double ShippingCalculator::calculate(const Order order) {
+    return order.weightKg * 1.2 + 25;
+}
+
 double ShippingCalculator::calculateShipping(int orderId) {
     try {
         const Order order = fetcher.fetchOrder(orderId);
@@ -26,7 +30,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "OVERNIGHT") {
-            return order.weightKg * 1.2 + 25;
+            return calculate(order);
         }
 
         if (order.shippingType == "INTERNATIONAL") {
