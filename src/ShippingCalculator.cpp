@@ -8,18 +8,16 @@
 #include <stdexcept>
 #include <string>
 
-ShippingCalculator::ShippingCalculator(IOrderFetcher& fetcher) : fetcher(fetcher) {}
+#include "StandardShipping.hpp"
 
-double ShippingCalculator::calculate(const Order order) {
-    return order.weightKg * 0.5;
-}
+ShippingCalculator::ShippingCalculator(IOrderFetcher& fetcher) : fetcher(fetcher) {}
 
 double ShippingCalculator::calculateShipping(int orderId) {
     try {
         const Order order = fetcher.fetchOrder(orderId);
 
         if (order.shippingType == "STANDARD") {
-            return calculate(order);
+            return StandardShipping().calculate(order);
         }
 
         if (order.shippingType == "EXPRESS") {

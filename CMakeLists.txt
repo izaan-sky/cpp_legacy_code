@@ -22,6 +22,8 @@ add_executable(cpp_legacy_code
         main.cpp
         src/OrderFetcher.cpp
         src/ShippingCalculator.cpp
+        src/StandardShipping.hpp
+        src/StandardShipping.cpp
 )
 
 target_include_directories(cpp_legacy_code PRIVATE src)
@@ -37,7 +39,8 @@ enable_testing()
 add_executable(cpp_legacy_code_tests
         tests/ShippingCalculatorTest.cpp
         src/OrderFetcher.cpp
-        src/ShippingCalculator.cpp)
+        src/ShippingCalculator.cpp
+        src/StandardShipping.cpp)
 target_link_libraries(cpp_legacy_code_tests PRIVATE
         Boost::json
         OpenSSL::SSL
