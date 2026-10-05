@@ -24,6 +24,7 @@ add_executable(cpp_legacy_code
         src/ShippingCalculator.cpp
         src/StandardShipping.hpp
         src/StandardShipping.cpp
+        src/ExpressShipping.cpp
 )
 
 target_include_directories(cpp_legacy_code PRIVATE src)
