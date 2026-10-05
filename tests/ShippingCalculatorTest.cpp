@@ -67,8 +67,13 @@ TEST(ShippingCalculatorTest, StandardShippingFor5kgOver120kmIs2Point5)
 
 TEST(ShippingCalculatorTest, ExpressShipping)
 {
-    OrderFetcherExpressStub orderFetcherExpressStub;
-    ShippingCalculator shippingCalculator(orderFetcherExpressStub);
+    Order order;
+    order.distanceKm = 300;
+    order.shippingType = "EXPRESS";
+    order.weightKg = 8.5;
+
+    OrderFetcherStub orderFetcherStub(std::move(order));
+    ShippingCalculator shippingCalculator(orderFetcherStub);
     const double calculatedCost = shippingCalculator.calculateShipping(1002);
     EXPECT_EQ(36.8, calculatedCost);
 }
