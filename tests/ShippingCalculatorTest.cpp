@@ -79,8 +79,13 @@ TEST(ShippingCalculatorTest, ExpressShipping)
 }
 
 TEST(ShippingCalculatorTest, OvernightShipping) {
-    OrderFetcherOvernightStub orderFetcherOvernightStub;
-    ShippingCalculator shippingCalculator(orderFetcherOvernightStub);
+    Order order;
+    order.distanceKm = 50;
+    order.shippingType = "OVERNIGHT";
+    order.weightKg = 2;
+
+    OrderFetcherStub orderFetcherStub(std::move(order));
+    ShippingCalculator shippingCalculator(orderFetcherStub);
     const double calculatedCost = shippingCalculator.calculateShipping(1003);
     EXPECT_EQ(27.4, calculatedCost);
 }
