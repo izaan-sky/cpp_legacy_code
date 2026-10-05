@@ -20,37 +20,6 @@ class OrderFetcherStub : public IOrderFetcher
     Order m_order;
 };
 
-class OrderFetcherExpressStub : public IOrderFetcher
-{
-    Order fetchOrder(const int orderId) override
-    {
-        Order order;
-        order.distanceKm = 300;
-        order.shippingType = "EXPRESS";
-        order.weightKg = 8.5;
-        return order;
-    }
-};
-
-class OrderFetcherOvernightStub : public IOrderFetcher {
-    Order fetchOrder(const int orderId) override {
-        Order order;
-        order.distanceKm = 50;
-        order.shippingType = "OVERNIGHT";
-        order.weightKg = 2;
-        return order;
-    }
-};
-
-class OrderFetcherInternationalStub : public IOrderFetcher {
-    Order fetchOrder(const int orderId) override {
-        Order order;
-        order.shippingType = "INTERNATIONAL";
-        order.weightKg = 20;
-        return order;
-    }
-};
-
 TEST(ShippingCalculatorTest, StandardShippingFor5kgOver120kmIs2Point5)
 {
     Order order;
