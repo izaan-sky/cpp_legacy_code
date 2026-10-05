@@ -10,12 +10,16 @@
 
 ShippingCalculator::ShippingCalculator(IOrderFetcher& fetcher) : fetcher(fetcher) {}
 
+double ShippingCalculator::calculate(const Order order) {
+    return order.weightKg * 0.5;
+}
+
 double ShippingCalculator::calculateShipping(int orderId) {
     try {
         const Order order = fetcher.fetchOrder(orderId);
 
         if (order.shippingType == "STANDARD") {
-            return order.weightKg * 0.5;
+            return calculate(order);
         }
 
         if (order.shippingType == "EXPRESS") {
