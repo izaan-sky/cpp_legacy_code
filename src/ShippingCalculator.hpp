@@ -8,8 +8,6 @@ public:
 
     double calculateShipping(int orderId);
 
-    double calculate(const Order &order);
-
 private:
     IOrderFetcher& fetcher;
 };
