@@ -91,8 +91,12 @@ TEST(ShippingCalculatorTest, OvernightShipping) {
 }
 
 TEST(ShippingCalculatorTest, InternationalShipping) {
-    OrderFetcherInternationalStub orderFetcherInternationalStub;
-    ShippingCalculator shippingCalculator(orderFetcherInternationalStub);
+    Order order;
+    order.shippingType = "INTERNATIONAL";
+    order.weightKg = 20;
+
+    OrderFetcherStub orderFetcherStub(std::move(order));
+    ShippingCalculator shippingCalculator(orderFetcherStub);
     const double calculatedCost = shippingCalculator.calculateShipping(1004);
     EXPECT_EQ(30.0, calculatedCost);
 }
