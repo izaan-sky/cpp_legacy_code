@@ -1,18 +1,23 @@
 #include <gtest/gtest.h>
+#include <utility>
 
 #include "OrderFetcher.hpp"
 #include "ShippingCalculator.hpp"
 
 class OrderFetcherStandardStub : public IOrderFetcher
 {
+    public:
+    OrderFetcherStandardStub(Order order) {
+        m_order = std::move(order);
+    }
+
     Order fetchOrder(const int orderId) override
     {
-        Order order;
-        order.distanceKm = 120;
-        order.shippingType = "STANDARD";
-        order.weightKg = 5;
-        return order;
+        return m_order;
     }
+
+    private:
+    Order m_order;
 };
 
 class OrderFetcherExpressStub : public IOrderFetcher
@@ -48,7 +53,13 @@ class OrderFetcherInternationalStub : public IOrderFetcher {
 
 TEST(ShippingCalculatorTest, StandardShippingFor5kgOver120kmIs2Point5)
 {
-    OrderFetcherStandardStub orderFetcherStub;
+    Order order;
+    order.distanceKm = 120;
+    order.shippingType = "STANDARD";
+    order.weightKg = 5;
+
+    OrderFetcherStandardStub orderFetcherStub(std::move(order));
+
     ShippingCalculator shippingCalculator(orderFetcherStub);
     const double calculatedCost = shippingCalculator.calculateShipping(1001);
     EXPECT_EQ(2.5, calculatedCost);
