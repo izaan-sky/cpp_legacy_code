@@ -10,12 +10,9 @@
 
 #include "StandardShipping.hpp"
 #include "ExpressShipping.hpp"
+#include "OvernightShipping.hpp"
 
 ShippingCalculator::ShippingCalculator(IOrderFetcher& fetcher) : fetcher(fetcher) {}
-
-double ShippingCalculator::calculate(const Order order) {
-    return order.weightKg * 1.2 + 25;
-}
 
 double ShippingCalculator::calculateShipping(int orderId) {
     try {
@@ -30,7 +27,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "OVERNIGHT") {
-            return calculate(order);
+            return OvernightShipping().calculate(order);
         }
 
         if (order.shippingType == "INTERNATIONAL") {

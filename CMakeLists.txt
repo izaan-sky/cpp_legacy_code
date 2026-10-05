@@ -25,6 +25,7 @@ add_executable(cpp_legacy_code
         src/StandardShipping.hpp
         src/StandardShipping.cpp
         src/ExpressShipping.cpp
+        src/OvernightShipping.cpp
 )
 
 target_include_directories(cpp_legacy_code PRIVATE src)
@@ -42,7 +43,8 @@ add_executable(cpp_legacy_code_tests
         src/OrderFetcher.cpp
         src/ShippingCalculator.cpp
         src/StandardShipping.cpp
-        src/ExpressShipping.cpp)
+        src/ExpressShipping.cpp
+        src/OvernightShipping.cpp)
 target_link_libraries(cpp_legacy_code_tests PRIVATE
         Boost::json
         OpenSSL::SSL
