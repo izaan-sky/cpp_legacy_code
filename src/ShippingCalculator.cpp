@@ -9,6 +9,7 @@
 #include <string>
 
 #include "StandardShipping.hpp"
+#include "ExpressShipping.hpp"
 
 ShippingCalculator::ShippingCalculator(IOrderFetcher& fetcher) : fetcher(fetcher) {}
 
@@ -21,7 +22,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "EXPRESS") {
-            return calculate(order);
+            return ExpressShipping().calculate(order);
         }
 
         if (order.shippingType == "OVERNIGHT") {
@@ -40,9 +41,4 @@ double ShippingCalculator::calculateShipping(int orderId) {
         std::cout << e.what() << '\n';
         return -1;
     }
-}
-
-double ShippingCalculator::calculate(const Order &order)
-{
-    return order.weightKg * 0.8 + order.distanceKm * 0.1;
 }
