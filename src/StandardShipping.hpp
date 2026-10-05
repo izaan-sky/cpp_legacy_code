@@ -5,7 +5,7 @@ class Order;
 
 class StandardShipping {
 public:
-    double calculate(Order order);
+    double calculate(const Order &order) const;
 };
 
 #endif //CPP_LEGACY_CODE_STANDARDSHIPPING_H

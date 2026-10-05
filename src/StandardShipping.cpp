@@ -2,6 +2,6 @@
 
 #include "Order.hpp"
 
-double StandardShipping::calculate(const Order order) {
+double StandardShipping::calculate(const Order &order) const {
     return order.weightKg * 0.5;
 }
