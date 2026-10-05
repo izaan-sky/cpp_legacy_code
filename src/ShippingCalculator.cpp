@@ -27,6 +27,10 @@ double ShippingCalculator::calculateShipping(int orderId) {
             return order.weightKg * 1.2 + 25;
         }
 
+        if (order.shippingType == "INTERNATIONAL") {
+            return order.weightKg * 1.5;
+        }
+
         throw std::runtime_error(
             "Unknown shipping type: " + order.shippingType
         );

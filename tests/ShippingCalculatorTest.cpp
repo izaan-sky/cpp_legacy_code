@@ -37,6 +37,15 @@ class OrderFetcherOvernightStub : public IOrderFetcher {
     }
 };
 
+class OrderFetcherInternationalStub : public IOrderFetcher {
+    Order fetchOrder(const int orderId) override {
+        Order order;
+        order.shippingType = "INTERNATIONAL";
+        order.weightKg = 20;
+        return order;
+    }
+};
+
 TEST(ShippingCalculatorTest, StandardShippingFor5kgOver120kmIs2Point5)
 {
     OrderFetcherStandardStub orderFetcherStub;
@@ -58,4 +67,11 @@ TEST(ShippingCalculatorTest, OvernightShipping) {
     ShippingCalculator shippingCalculator(orderFetcherOvernightStub);
     const double calculatedCost = shippingCalculator.calculateShipping(1003);
     EXPECT_EQ(27.4, calculatedCost);
+}
+
+TEST(ShippingCalculatorTest, InternationalShipping) {
+    OrderFetcherInternationalStub orderFetcherInternationalStub;
+    ShippingCalculator shippingCalculator(orderFetcherInternationalStub);
+    const double calculatedCost = shippingCalculator.calculateShipping(1004);
+    EXPECT_EQ(30.0, calculatedCost);
 }
